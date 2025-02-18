@@ -46,7 +46,7 @@ npm run dev
 ```
 
 The API will be available at:
- http://localhost:3000/api/sales
+ http://localhost:3000/api/sales/insights
 
 ## 5 Optional Run test cases and linting with these
 ```sh
