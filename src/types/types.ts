@@ -13,3 +13,9 @@ export interface SalesInsights {
     categorySales: Record<string, { totalSales: number; transactions: number }>;
     averageSalesPerTransaction: string;
 }
+
+export interface ApiResponse {
+    insights?: SalesInsights;
+    summary?: string;
+    error?: string;
+}
