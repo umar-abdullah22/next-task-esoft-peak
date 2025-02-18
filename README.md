@@ -1,41 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+#  Sales Insights API (Next.js + TypeScript + Docker)
 
-## Getting Started
+A **scalable and production-ready** Sales Insights API built with **Next.js**, **TypeScript**, and **Docker**.  
+This project provides **sales data analysis**, an **AI-generated summary (OpenAI GPT-3.5)**, and is fully **containerized for easy deployment**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+##  Features
+ **Next.js API Routes** for processing sales data  
+ **TypeScript for strict type safety**  
+ **AI-powered sales summary using OpenAI GPT-3.5-Turbo**  
+ **Unit tests with Jest for validation**  
+ **Linting with ESLint for code quality**  
+ **Dockerized for platform-independent deployment**  
+
+---
+
+##  Setup & Installation Locally
+
+Follow these steps to set up and run the project **locally**.
+
+---
+
+## 1 Clone the Repository
+```sh
+git clone https://github.com/umar-abdullah22/next-task-esoft-peak.git
+cd next-task-esoft-peak
+```
+## 2 Install dependencies
+```sh
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 3 Setup Environment Variable
+```sh
+OPENAI_API_KEY=your_openai_api_key_here
+```
+ Note:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Replace your_openai_api_key_here with your actual OpenAI API key.
+Without this, AI-powered sales summaries won’t work.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 4 Run
+```sh
+npm run dev
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+The API will be available at:
+ http://localhost:3000/api/sales
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 5 Optional Run test cases and linting with these
+```sh
+npm run lint ##for eslint
+npm test ## to run unit tests
+```
 
-## Learn More
+##  Setup & Installation Docker
 
-To learn more about Next.js, take a look at the following resources:
+Follow these steps to set up and run the project **docker**.
+If you want a platform-independent setup, use Docker.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## 1️ Build the Docker Image
+```sh
+docker build -t sales-insights-api --build-arg OPENAI_API_KEY=your_openai_api_key_here .
+```
+## 2 Run the Docker Container
+```sh
+docker run -p 3000:3000 -e OPENAI_API_KEY=your_openai_api_key_here sales-insights-api
+```
+Now the API is running inside a Docker container!
+Open http://localhost:3000/api/sales/insights
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Test API with Predefined Mock Data
+if curl is available/installed on your system run the following command:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+After running the project locally or with Docker, simply run the following command to send a test request:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
-# next-task-esoft-peak
+```sh
+curl -X POST http://localhost:3000/api/sales/insights \
+     -H "Content-Type: application/json" \
+     -d '[
+            { "name": "Alice", "email": "alice@example.com", "product": "Widget A", "category": "Widgets", "amount": 120, "date": "2023-03-01", "state": "CA" },
+            { "name": "Bob", "email": "bob@example.com", "product": "Widget B", "category": "Gadgets", "amount": 200, "date": "2023-03-02", "state": "NY" }
+        ]'
+```
